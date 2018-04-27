@@ -1,29 +1,44 @@
-import * as React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { asyncSetMessage } from './modules/homeActions'
-import InputPreview from '../../components/InputPreview'
+import * as React from 'react';
+import { Link } from 'react-router-dom';
+import InputPreview from '../../components/InputPreview';
+import { connect } from 'react-redux';
+import { syncSetMessage } from './modules/homeReducer';
+import { injectReducer } from '../../store/reducers';
+import homeReducer from './modules/homeReducer';
+import store from '../../store/createStore';
 
-@connect(state => state)
-export default class Home extends React.Component {
+class Home extends React.Component {
 
   _onChange (value) {
-    this.props.dispatch(asyncSetMessage(value))
+    const { syncSetMessage } = this.props;
+    syncSetMessage(value);
   }
 
   render () {
-    const { message } = this.props.homeReducer
+    const { message } = this.props.home;
 
     return (
       <div>
-        <InputPreview value={message} onChange={(value) => this._onChange(value)}/>
+        <InputPreview value={message}
+                      onChange={(value) => this._onChange(value)}/>
         <Link to={'/about'}>
           <button>Go About</button>
         </Link>
       </div>
-    )
+    );
   }
 
 }
 
-// export default connect(state => state)(Home)
+const mapStateToProps = (state) => ({
+  home: state.home,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  syncSetMessage: (v) => dispatch(syncSetMessage(v)),
+});
+
+export default () => {
+  injectReducer(store, { key: 'home', reducer: homeReducer });
+  return connect(mapStateToProps, mapDispatchToProps)(Home);
+}
