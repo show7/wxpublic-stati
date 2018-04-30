@@ -3,10 +3,16 @@ import homeReducer from '../routes/Home/modules/homeReducer';
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
+    home: homeReducer,
     ...asyncReducers
   });
 };
 
+/**
+ * 创建 reducer
+ * @param initialState
+ * @param ACTION_HANDLES
+ */
 export const createReducer = (initialState, ACTION_HANDLES) => (
   (state = initialState, action) => {
     const handler = ACTION_HANDLES[action.type];

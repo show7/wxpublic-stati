@@ -19,6 +19,31 @@ module.exports = {
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
+      {
+        test: /\.less$/,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'less-loader',
+        ],
+      },
+      {
+        test: /\.css$/,
+        // exclude: /node_modules/, // weui 引用
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
+      {
+        test: /\.(gif|jpg|png)$/,
+        exclude: /node_modules/,
+        use: ['url-loader'],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|svg)$/,
+        exclude: /node_modules/,
+        use: ['file-loader'],
+      },
     ],
   },
   plugins: [

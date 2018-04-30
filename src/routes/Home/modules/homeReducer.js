@@ -1,4 +1,10 @@
 export const SET_MESSAGE = 'SET_MESSAGE';
+export const DELETE_LIST = 'DELETE_LIST';
+
+const initState = {
+  message: '',
+  list: [1, 2],
+};
 
 export const asyncSetMessage = (message) => {
   return dispatch => {
@@ -20,14 +26,18 @@ export const syncSetMessage = (message) => {
   };
 };
 
-const initState = {
-  message: '',
+export const deleteList = () => {
+  return {
+    type: DELETE_LIST,
+  };
 };
 
 const homeReducer = (state = initState, action) => {
   switch (action.type) {
     case SET_MESSAGE:
       return { ...state, message: action.payload.message };
+    case DELETE_LIST:
+      return { ...state, list: [] };
     default:
       return state;
   }

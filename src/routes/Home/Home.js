@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import InputPreview from '../../components/InputPreview';
 import { connect } from 'react-redux';
-import { syncSetMessage } from './modules/homeReducer';
 import { injectReducer } from '../../store/reducers';
+import { syncSetMessage, deleteList } from './modules/homeReducer';
 import homeReducer from './modules/homeReducer';
 import store from '../../store/createStore';
+import TabBarLayout from '../../layouts/TabBarLayout/TabBarLayout';
 
 class Home extends React.Component {
 
@@ -15,16 +15,13 @@ class Home extends React.Component {
   }
 
   render () {
-    const { message } = this.props.home;
+    const { message, list } = this.props.home;
+    const { syncSetMessage, deleteList } = this.props;
 
     return (
-      <div>
-        <InputPreview value={message}
-                      onChange={(value) => this._onChange(value)}/>
-        <Link to={'/about'}>
-          <button>Go About</button>
-        </Link>
-      </div>
+      <TabBarLayout>
+        <h1>hello world</h1>
+      </TabBarLayout>
     );
   }
 
@@ -36,9 +33,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   syncSetMessage: (v) => dispatch(syncSetMessage(v)),
+  deleteList: () => dispatch(deleteList()),
 });
 
-export default () => {
-  injectReducer(store, { key: 'home', reducer: homeReducer });
-  return connect(mapStateToProps, mapDispatchToProps)(Home);
-}
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
