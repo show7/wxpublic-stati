@@ -11,6 +11,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'app.bundle.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -53,11 +54,8 @@ module.exports = {
     }),
   ],
   devServer: {
-    port: 8080,
-    historyApiFallback: {
-      rewrites: [
-        { from: /./, to: '/index.html' },
-      ],
-    },
+    port: 2000,
+    historyApiFallback: true,
+    publicPath: '/',
   },
 };

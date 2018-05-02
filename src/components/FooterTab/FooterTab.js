@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { TabBar } from 'antd-mobile';
-
 import './FooterTab.less';
+import { TabBar } from 'antd-mobile';
 
 export default class FooterTab extends React.Component {
 
@@ -14,7 +13,7 @@ export default class FooterTab extends React.Component {
 
   render () {
     return (
-      <div className="tab-bar-component">
+      <div className="footer-tab-component">
         <TabBar>
           <TabBar.Item title="first"
                        key="first"
