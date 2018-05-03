@@ -1,6 +1,9 @@
 import * as React from 'react';
+import './RoleCreation.less';
 import { Button, List, InputItem } from 'antd-mobile';
 import FooterButton from '../../components/FooterButton/FooterButton';
+import Swiper from 'swiper/dist/js/swiper.min';
+import Typed from 'typed.js';
 import $ from 'jquery';
 
 const RenderSteps = {
@@ -34,10 +37,21 @@ export default class RoleCreation extends React.Component {
     };
   }
 
+  componentDidMount () {
+    // new Swiper('#role-creation-container', {
+    //   direction: 'vertical',
+    //   loop: false,
+    // });
+    // let type = new Typed('.text', {
+    //   strings: ['i want be a hero', 'how about you'],
+    //   typeSpeed: 40,
+    // });
+  }
+
   renderGender () {
     return (
-      <div className="">
-        <h3>性别选择提示语</h3>
+      <div>
+        <h2>性别选择提示语</h2>
         <Button>王子</Button>
         <Button>公主</Button>
       </div>
@@ -46,8 +60,8 @@ export default class RoleCreation extends React.Component {
 
   renderNickname () {
     return (
-      <div className="">
-        <h3>昵称输入提示语</h3>
+      <div>
+        <h2>昵称输入提示语</h2>
         <List>
           <InputItem placeholder={'输入您的江湖大名'}
                      maxLength={8}
@@ -59,8 +73,8 @@ export default class RoleCreation extends React.Component {
 
   renderFamilyCircumstances () {
     return (
-      <div className="">
-        <h3>家境选择提示语</h3>
+      <div>
+        <h2>家境选择提示语</h2>
         <Button>土豪</Button>
         <Button>弱鸡</Button>
         <Button>贫民</Button>
@@ -92,13 +106,18 @@ export default class RoleCreation extends React.Component {
         nextStep = RenderSteps.renderFamilyCircumstances;
         break;
       case RenderSteps.renderFamilyCircumstances:
-        nextStep = RenderSteps.renderGender;
+        this.props.history.push({
+          pathname: '/hello/1',
+          state: {
+            id: 1,
+          },
+        });
         break;
       default:
         break;
     }
     this.setState({ step: nextStep }, () => {
-      $('#box').animateCss('animated fadeInUp');
+      $('#box').animateCss('animated fadeInRight');
     });
   }
 
@@ -111,8 +130,10 @@ export default class RoleCreation extends React.Component {
     } = this.state;
 
     return (
-      <div className="role-creation-container pb">
-        <div id={'box'}>
+      <div id="role-creation-container"
+           className="role-creation-container pd-container">
+        <div id="box"
+             className="content-box">
           {this.renderBySteps(step)}
         </div>
         <FooterButton text={'hello'}

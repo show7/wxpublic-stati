@@ -13,6 +13,7 @@ module.exports = {
     filename: 'app.bundle.js',
     publicPath: '/',
   },
+  resolve: {},
   module: {
     rules: [
       {
@@ -54,6 +55,7 @@ module.exports = {
     }),
   ],
   devServer: {
+    host: '0.0.0.0',
     port: 2000,
     historyApiFallback: true,
     publicPath: '/',

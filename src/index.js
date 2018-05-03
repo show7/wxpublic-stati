@@ -6,23 +6,25 @@ import Routes from './routes/router';
 import $ from 'jquery';
 
 /**
- * import 全局 css
+ * 全局三方功能样式
  */
-import 'normalize.css';
-import 'animate.css';
-import './styles/base.less';
-import './styles/global.less';
+import 'animate.css/animate.min.css';
+import 'swiper/dist/css/swiper.min.css';
+/**
+ * 优化 css
+ */
+import 'normalize.css/normalize.css';
+import './styles/mixins.less';
 
 /**
  * 全局 js 操作
  */
 require('babel-polyfill');
-// 添加 animateCss 支持
+// 给 jquery 添加 animateCss 支持
 $.fn.extend({
   animateCss: function (animationName, callback) {
     let animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
     this.addClass('animated ' + animationName).one(animationEnd, function () {
-      console.log(this)
       $(this).removeClass('animated ' + animationName);
       if (callback) callback();
     });
