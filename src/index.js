@@ -10,6 +10,7 @@ import $ from 'jquery';
  */
 import 'animate.css/animate.min.css';
 import 'swiper/dist/css/swiper.min.css';
+import 'antd/dist/antd.css';
 /**
  * 优化 css
  */
