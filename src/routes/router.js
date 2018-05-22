@@ -1,11 +1,12 @@
-import * as React from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import * as React from 'react'
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 
-import Home from './Home/Home';
-import About from './About/About';
-import RoleCreation from './RoleCreation/RoleCreation';
-import DataList from './Backend/DataList/DataList';
-import DataModal from './Backend/DataModal/DataModal';
+import Home from './Home/Home'
+import About from './About/About'
+import RoleCreation from './RoleCreation/RoleCreation'
+import DataList from './Backend/DataList/DataList'
+import DataModal from './Backend/DataModal/DataModal'
+import RoadMap from './RoadMap/RoadMap'
 
 export default (
   <BrowserRouter>
@@ -13,9 +14,14 @@ export default (
       <Route exact
              path={'/'}
              component={Home}/>
-      <Route path={'/about'}
+      <Route exact
+             path={'/about'}
              component={About}/>
-      <Route path={'/role/creation'}
+      <Route exact
+             path={'/roadmap'}
+             component={RoadMap}/>
+      <Route exact
+             path={'/role/creation'}
              component={RoleCreation}/>
       <Route exact
              path={'/backend'}
@@ -25,4 +31,4 @@ export default (
              component={DataModal}/>
     </Switch>
   </BrowserRouter>
-);
+)

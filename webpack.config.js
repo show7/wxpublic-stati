@@ -1,19 +1,24 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    entry: './src/index.js',
+    app: './src/index.js',
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'app.bundle.js',
+    filename: '[name].bundle.js',
     publicPath: '/',
   },
-  resolve: {},
+  resolve: {
+    alias: {
+      utils: path.resolve(__dirname, 'src/utils/'),
+    },
+  },
   module: {
     rules: [
       {
@@ -48,16 +53,30 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    hot: true,
+    host: '0.0.0.0',
+    port: 2000,
+    publicPath: '/',
+    historyApiFallback: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        bypass: function (req, res, proxyOptions) {
+          if (req.headers.accept.indexOf('html') !== -1) {
+            console.log('Skipping proxy for browser request.')
+            return '/index.html'
+          }
+        },
+      },
+    },
+  },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       template: 'index.html',
     }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
-  devServer: {
-    host: '0.0.0.0',
-    port: 2000,
-    historyApiFallback: true,
-    publicPath: '/',
-  },
-};
+}
