@@ -20,7 +20,7 @@ import './styles/mixins.less'
 /**
  * 全局 js 操作
  */
-require('babel-polyfill')
+// require('babel-polyfill')
 // 给 jquery 添加 animateCss 支持
 $.fn.extend({
   animateCss: function (animationName, callback) {

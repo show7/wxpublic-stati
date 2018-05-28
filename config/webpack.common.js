@@ -2,16 +2,18 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    app: './src/index.js',
+    app: ['babel-polyfill', './src/index.js'],
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '../dist'),
     filename: '[name].bundle.js',
+    chunkFilename: '[id].chunk_[chunkhash].js',
     publicPath: '/',
   },
   resolve: {
@@ -29,16 +31,12 @@ module.exports = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'less-loader',
-        ],
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader',],
       },
       {
         test: /\.css$/,
-        // exclude: /node_modules/, // weui 引用
+        // weui 引用
+        // exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
@@ -72,11 +70,7 @@ module.exports = {
     },
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-    }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin(['../dist']),
+    // new BundleAnalyzerPlugin(),
   ],
 }

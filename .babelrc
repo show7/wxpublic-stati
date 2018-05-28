@@ -19,6 +19,9 @@
       "transform-object-rest-spread"
     ],
     [
+      "syntax-dynamic-import"
+    ],
+    [
       "import",
       {
         "libraryName": "antd-mobile",
