@@ -51,6 +51,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
+      inject: false
     }),
     new CleanWebpackPlugin(path.resolve('dist'), { root: '/Users/xfduan/Person/Electron/personal-react-leonidas' })
   ],

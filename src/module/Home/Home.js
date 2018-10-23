@@ -6,6 +6,13 @@ export default class Home extends React.Component {
     super()
   }
 
+  componentDidMount () {
+    console.log(this.props)
+    setTimeout(() => {
+      this.props.history.push('/about')
+    }, 1000)
+  }
+
   render () {
     return (
       <div>

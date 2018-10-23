@@ -7,6 +7,7 @@
     "webpack": "registry:npm/webpack#1.12.9+20160418172948"
   },
   "globalDependencies": {
+    "electron": "registry:dt/electron#1.4.8+20170316233216",
     "react-router-dom": "registry:dt/react-router-dom#4.0.0+20170323201651"
   }
 }
