@@ -2,11 +2,8 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
-  mode: 'development',
-  devtool: 'inline-source-map',
   entry: {
     app: ['babel-polyfill', './src/index.js'],
   },
@@ -17,6 +14,7 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
+    // 别名，可忽略不配置
     alias: {
       utils: path.resolve(__dirname, 'src/utils/'),
     },
@@ -50,26 +48,10 @@ module.exports = {
       },
     ],
   },
-  devServer: {
-    hot: true,
-    host: '0.0.0.0',
-    port: 2000,
-    publicPath: '/',
-    historyApiFallback: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        bypass: function (req, res, proxyOptions) {
-          if (req.headers.accept.indexOf('html') !== -1) {
-            console.log('Skipping proxy for browser request.')
-            return '/index.html'
-          }
-        },
-      },
-    },
-  },
   plugins: [
-    new CleanWebpackPlugin(['../dist']),
-    // new BundleAnalyzerPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+    }),
+    new CleanWebpackPlugin(path.resolve('dist'), { root: '/Users/xfduan/Person/Electron/personal-react-leonidas' })
   ],
 }
