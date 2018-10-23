@@ -1,12 +1,12 @@
-import { combineReducers } from 'redux';
-import homeReducer from '../routes/Home/modules/homeReducer';
+import { combineReducers } from 'redux'
+import cacheReducer from './reducers/cacheReducer/cacheReducer'
 
 const makeRootReducer = (asyncReducers) => {
   return combineReducers({
-    home: homeReducer,
+    cacheReducer: cacheReducer,
     ...asyncReducers
-  });
-};
+  })
+}
 
 /**
  * 注入 reducer
@@ -15,8 +15,8 @@ const makeRootReducer = (asyncReducers) => {
  * @param reducer
  */
 const injectReducer = (store, { key, reducer }) => {
-  store.asyncReducers[key] = reducer;
-  store.replaceReducer(makeRootReducer(store.asyncReducers));
-};
+  store.asyncReducers[key] = reducer
+  store.replaceReducer(makeRootReducer(store.asyncReducers))
+}
 
-export { makeRootReducer, injectReducer };
+export { makeRootReducer, injectReducer }

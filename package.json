@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "better-npm-run dev",
-    "prod": "better-npm-run prod",
-    "test": "better-npm-run test"
+    "prod": "better-npm-run prod"
   },
   "betterScripts": {
     "dev": {
@@ -17,21 +16,13 @@
       "env": {
         "version_number": "1"
       }
-    },
-    "test": {
-      "command": "webpack-dev-server --hot"
     }
   },
   "author": "三十文_felix",
   "license": "ISC",
   "dependencies": {
-    "animate.css": "^3.6.1",
-    "antd": "^3.5.2",
-    "antd-mobile": "^2.1.8",
     "babel-polyfill": "^6.26.0",
-    "jquery": "^3.3.1",
-    "lodash": "^4.17.10",
-    "lottie-web": "^5.1.14",
+    "lodash": "^4.17.11",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
@@ -40,15 +31,14 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
-    "swiper": "^4.2.6",
-    "typed.js": "^2.0.6"
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-import": "^1.7.0",
     "babel-plugin-syntax-decorators": "^6.13.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
@@ -66,7 +56,7 @@
     "url-loader": "^1.0.1",
     "webpack": "^4.3.0",
     "webpack-bundle-analyzer": "^2.13.1",
-    "webpack-cli": "^2.0.13",
+    "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.1",
     "webpack-merge": "^4.1.2"
   }
