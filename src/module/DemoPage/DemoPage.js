@@ -3,7 +3,10 @@ import KeyBind from '../../utils/keyBind'
 import Movement from '../../components/Character/Movement/Movement'
 import BornMap from '../../components/Maps/BornMap/BornMap'
 import WorldTiles from '../../utils/tiles/WorldTiles'
-import Dialog from '../../components/Dialog/Dialog'
+import DialogBox from '../../components/DialogBox/DialogBox'
+import ContinuousDialog from '../../components/ContinuousDialog/ContinuousDialog'
+import ProfileConstants from '../profile/ProfileConstants'
+import PrologueChaperDialog from '../dialogue/PrologueChapter'
 
 export default class DemoPage extends React.Component {
 
@@ -73,11 +76,12 @@ export default class DemoPage extends React.Component {
     } = this.state
 
     return (
-      <div style={{ width: 32 * 15, height: 32 * 10, margin: '0 auto',position: 'relative' }}>
+      <div style={{ width: 32 * 15, height: 32 * 10, margin: '0 auto', position: 'relative' }}>
         <BornMap mapData={this.mapData}/>
         <Movement xPosition={xPosition}
                   yPosition={yPosition}/>
-        <Dialog/>
+        <ContinuousDialog key={1}
+                          dialogObject={PrologueChaperDialog.InitDialog[0]}/>
       </div>
     )
   }
