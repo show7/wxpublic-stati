@@ -1,14 +1,15 @@
 import * as React from 'react'
 import { MemoryRouter, Switch, Route } from 'react-router-dom'
-import DemoPage from './DemoPage/DemoPage'
-import MobxDemo from './MobxDemo/MobxDemo'
+import WorldMap from './WorldMap/WorldMap'
 
-export default (
+const router = (
   <MemoryRouter>
     <Switch>
       <Route exact
              path="/"
-             component={MobxDemo}/>
+             component={WorldMap}/>
     </Switch>
   </MemoryRouter>
 )
+
+export default router

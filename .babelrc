@@ -1,32 +1,12 @@
 {
   "presets": [
-    [
-      "env",
-      {
-        "modules": false,
-        "targets": {
-          "node": 6,
-          "browsers": [
-            "last 2 versions"
-          ]
-        }
-      }
-    ],
+    "env",
     "react"
   ],
   "plugins": [
-    [
-      "transform-object-rest-spread"
-    ],
-    [
-      "syntax-dynamic-import"
-    ],
-    [
-      "import",
-      {
-        "libraryName": "antd-mobile",
-        "style": "css"
-      }
-    ]
+    "syntax-dynamic-import",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "transform-object-rest-spread"
   ]
 }

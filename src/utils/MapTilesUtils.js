@@ -1,6 +1,6 @@
-const WorldTiles = {
+const MapTilesUtils = {
   // 可移动砖块类型
-  moveableTypes: [10, 11, 12, 13, 14, 15, 16, 17, 21],
+  moveableTypes: [10, 11, 12, 13, 14, 15, 16, 17, 21, 77],
   // 判断下个点是否可移动
   couldMove: (mapData, xPosition, yPosition) => {
     // tips：xPosition 和 yPosition 因为数组排布原因，此处要反转下
@@ -12,8 +12,8 @@ const WorldTiles = {
     let pointType = mapData[yPosition][xPosition]
     // console.log(`next position is: ${xPosition}, ${yPosition} and next Type is: ${pointType}`)
     // console.log(WorldTiles.moveableTypes.includes(pointType) ? 'true' : 'false')
-    return WorldTiles.moveableTypes.includes(pointType)
+    return MapTilesUtils.moveableTypes.includes(pointType)
   }
 }
 
-export default WorldTiles
+export default MapTilesUtils

@@ -3,6 +3,9 @@ import propTypes from 'prop-types'
 
 import './Movement.less'
 
+/**
+ * WorldMap 中移动对象
+ */
 export default class Movement extends React.Component {
 
   constructor () {
