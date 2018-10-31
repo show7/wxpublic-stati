@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react'
 import NanTong from '../../component/WorldMaps/NanTong/NanTong'
 import KeyBind from '../../utils/KeyBind'
 import Movement from '../../component/Character/Movement/Movement'
-import MapTilesUtils from '../../utils/MapTilesUtils'
+import SpiriteAllocation from '../../component/SpiriteAllocation/SpiriteAllocation'
 
 @inject('worldMapStore')
 @observer
@@ -27,35 +27,24 @@ export default class WorldMap extends React.Component {
     const {
       xPosition,
       yPosition,
-      setPosition
+      setPosition,
+      moveToNextPoint
     } = this.props.worldMapStore
     const mapData = this.refs.mapInstance.getMapData()
-    let keyCode = event.keyCode
-    let nextTileType
-    switch (keyCode) {
+    switch (event.keyCode) {
       case KeyBind.ArrowUp:
-        if (MapTilesUtils.couldMove(mapData, xPosition, yPosition - 1)) {
-          // this.setState({ yPosition: yPosition - 1 })
-          setPosition(xPosition, yPosition - 1)
-        }
+        moveToNextPoint(mapData, xPosition, yPosition - 1)
         break
       case KeyBind.ArrowDown:
-        if (MapTilesUtils.couldMove(mapData, xPosition, yPosition + 1)) {
-          // this.setState({ yPosition: yPosition + 1 })
-          setPosition(xPosition, yPosition + 1)
-        }
+        moveToNextPoint(mapData, xPosition, yPosition + 1)
         break
       case KeyBind.ArrowLeft:
-        if (MapTilesUtils.couldMove(mapData, xPosition - 1, yPosition)) {
-          // this.setState({ xPosition: xPosition - 1 })
-          setPosition(xPosition - 1, yPosition)
-        }
+        moveToNextPoint(mapData, xPosition - 1, yPosition)
         break
       case KeyBind.ArrowRight:
-        if (MapTilesUtils.couldMove(mapData, xPosition + 1, yPosition)) {
-          // this.setState({ xPosition: xPosition + 1 })
-          setPosition(xPosition + 1, yPosition)
-        }
+        moveToNextPoint(mapData, xPosition + 1, yPosition)
+        break
+      default:
         break
     }
   }
@@ -63,7 +52,8 @@ export default class WorldMap extends React.Component {
   render () {
     const {
       xPosition,
-      yPosition
+      yPosition,
+      spirites
     } = this.props.worldMapStore
 
     return (
@@ -71,6 +61,16 @@ export default class WorldMap extends React.Component {
         <NanTong ref="mapInstance"/>
         <Movement xPosition={xPosition}
                   yPosition={yPosition}/>
+        <div className="spirites">
+          {
+            spirites.map((spirite, index) => {
+              return <SpiriteAllocation key={index}
+                                        xPosition={spirite.xPosition}
+                                        yPosition={spirite.yPosition}
+                                        type={spirite.type}/>
+            })
+          }
+        </div>
       </div>
     )
   }

@@ -1,9 +1,9 @@
-import ProfileStore from './ProfileStore'
-import WorldMapStore from './WorldMapStore'
+import profileStore from './ProfileStore'
+import worldMapStore from './WorldMapStore'
 
 const store = {
-  profileStore: new ProfileStore(),
-  worldMapStore: new WorldMapStore()
+  profileStore: profileStore,
+  worldMapStore: worldMapStore
 }
 
 export default store

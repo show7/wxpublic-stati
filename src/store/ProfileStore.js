@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx'
 
-export default class ProfileStore {
+class ProfileStore {
   @observable timer = 0
 
   @action resetTimer () {
@@ -12,3 +12,6 @@ export default class ProfileStore {
   }
 
 }
+
+const profileStore = new ProfileStore()
+export default profileStore
