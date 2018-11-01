@@ -23,7 +23,7 @@ export default class Movement extends React.Component {
       <div className="movement-component"
            style={{ left: xPosition * 32, top: yPosition * 32 }}>
         <IconFont iconType="icon-huoche"
-                  fontSize="32px"/>
+                  fontSize="3.2rem"/>
       </div>
     )
   }

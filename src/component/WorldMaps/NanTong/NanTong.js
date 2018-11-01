@@ -31,21 +31,24 @@ export default class NanTong extends React.Component {
   render () {
     return (
       <div className="nan-tong-component">
-        {
-          this.mapData.map((lines, lineIndex) => {
-            return (
-              <div key={lineIndex}
-                   style={{ height: '32px' }}>
-                {
-                  lines.map((sequenceData, detailIndex) => {
-                    return <WorldMapTile key={detailIndex}
-                                         tileSequence={sequenceData}/>
-                  })
-                }
-              </div>
-            )
-          })
-        }
+        <div className="nan-tong-map">
+          {
+            this.mapData.map((lines, lineIndex) => {
+              return (
+                <div key={lineIndex}
+                     style={{ height: '3.2rem' }}>
+                  {
+                    lines.map((sequenceData, detailIndex) => {
+                      return <WorldMapTile key={detailIndex}
+                                           tileSequence={sequenceData}/>
+                    })
+                  }
+                </div>
+              )
+            })
+          }
+        </div>
+        {this.props.children}
       </div>
     )
   }

@@ -22,7 +22,7 @@ export default class SpiriteAllocation extends React.Component {
       <div className="spirite-allocation-component"
            style={{ left: xPosition * 32, top: yPosition * 32 }}>
         <IconFont iconType={type}
-                  fontSize="32px"/>
+                  fontSize="3.2rem"/>
       </div>
     )
   }

@@ -1,5 +1,11 @@
 import HelloEvent from './HelloEvent'
 
-export {
-  HelloEvent
+/**
+ * 通用事件
+ * @type {{HelloEvent}}
+ */
+const CommonEvent = {
+  HelloEvent: HelloEvent
 }
+
+export default CommonEvent

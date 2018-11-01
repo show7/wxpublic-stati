@@ -27,10 +27,10 @@ export default class WorldMapTile extends React.Component {
     return {
       fontsize: 30,
       display: 'inline-block',
-      width: '32px',
-      height: '32px',
+      width: '3.2rem',
+      height: '3.2rem',
       // background: `url(https://static.iqycamp.com/world-map-yjzyqr65.jpg)`,
-      backgroundPosition: `-${xOffSet * 32}px -${yOffSet * 32}px`
+      backgroundPosition: `-${xOffSet * 32 / 10}rem -${yOffSet * 32 / 10}rem`
     }
   }
 

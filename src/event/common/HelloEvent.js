@@ -1,12 +1,24 @@
 import dialogModel from '../../store/model/DialogModel'
+import operatorModel from '../../store/model/OperatorModel'
 
-const helloEventGenerator = function * () {
-  console.log('pre show dialog')
+const helloEvent = function * () {
+  // 暂停移动
+  operatorModel.pauseMoveable()
+  // 打开对话框
   dialogModel.showDialog()
-  yield dialogModel.setDialogData({ message: '嗯嗯' })
-  yield dialogModel.setDialogData({ message: '有什么事情么' })
-}
+  // 更改文案
+  dialogModel.setDialogData({ message: '嗯嗯' })
+  yield
 
-const helloEvent = helloEventGenerator()
+  // 更改文案
+  dialogModel.setDialogData({ message: '有什么事情么' })
+  yield
+
+  // 隐藏弹框
+  dialogModel.hideDialog()
+  // 允许移动
+  operatorModel.releaseMoveable()
+  yield
+}
 
 export default helloEvent

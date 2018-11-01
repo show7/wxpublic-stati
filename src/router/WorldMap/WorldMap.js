@@ -5,15 +5,11 @@ import KeyBind from '../../utils/KeyBind'
 import Movement from '../../component/Character/Movement/Movement'
 import SimpleDialog from '../../component/SimpleDialog/SimpleDialog'
 import SpiriteAllocation from '../../component/SpiriteAllocation/SpiriteAllocation'
+import ResourceNav from '../../component/ResourceNav/ResourceNav'
 
 import './WorldMap.less'
 
-@inject(
-  'worldMapController',
-  'dialogModel',
-  'operatorModel',
-  'spiriteModel'
-)
+@inject('worldMapController')
 @observer
 export default class WorldMap extends React.Component {
 
@@ -34,12 +30,8 @@ export default class WorldMap extends React.Component {
   }
 
   keyDownFunction (event) {
-    const {
-      worldMapController,
-      dialogModel,
-      operatorModel,
-      spiriteModel
-    } = this.props
+    const { worldMapController } = this.props
+    const { dialogModel, operatorModel, spiriteModel } = this.props.worldMapController.models
     const mapData = this.refs.mapInstance.getMapData()
     switch (event.keyCode) {
       case KeyBind.ArrowUp:
@@ -60,40 +52,34 @@ export default class WorldMap extends React.Component {
   }
 
   mouseClickFunction (event) {
-    console.log('mouse click:', event)
+    this.props.worldMapController.clickCurrentPage()
   }
 
   render () {
-    const {
-      dialogModel,
-      operatorModel,
-      spiriteModel
-    } = this.props
+    const { dialogModel, operatorModel, spiriteModel, homelandModel } = this.props.worldMapController.models
 
     return (
       <div className="world-map-container">
-        {/* 地图 */}
-        <NanTong ref="mapInstance"/>
-        {/* 人物 */}
-        <Movement xPosition={operatorModel.xPosition}
-                  yPosition={operatorModel.yPosition}/>
-        {/* 地图事件地址 */}
-        <div className="spirites">
+        <ResourceNav resources={homelandModel.resources}/>
+        <NanTong ref="mapInstance">
+          <Movement xPosition={operatorModel.xPosition}
+                    yPosition={operatorModel.yPosition}/>
+          <div className="spirites">
+            {
+              spiriteModel.spirites.map((spirite, index) => {
+                return <SpiriteAllocation key={index}
+                                          xPosition={spirite.xPosition}
+                                          yPosition={spirite.yPosition}
+                                          type={spirite.type}/>
+              })
+            }
+          </div>
           {
-            spiriteModel.spirites.map((spirite, index) => {
-              return <SpiriteAllocation key={index}
-                                        xPosition={spirite.xPosition}
-                                        yPosition={spirite.yPosition}
-                                        type={spirite.type}/>
-            })
+            dialogModel.show &&
+            <SimpleDialog avatar={dialogModel.avatar}
+                          message={dialogModel.message}/>
           }
-        </div>
-        {/* 对话窗口 */}
-        {
-          dialogModel.show &&
-          <SimpleDialog avatar={dialogModel.avatar}
-                        message={dialogModel.message}/>
-        }
+        </NanTong>
       </div>
     )
   }
