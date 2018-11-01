@@ -5,6 +5,8 @@ const MapTileUtils = {
   couldMove: (mapData, xPosition, yPosition) => {
     // tips：xPosition 和 yPosition 因为数组排布原因，此处进行反转
     // 任何会导致越界的情况，都不允许移动
+    console.log(xPosition, yPosition)
+    console.log(mapData[yPosition][xPosition])
     if (xPosition < 0 || yPosition < 0 || yPosition > mapData.length - 1 || xPosition > mapData[0].length - 1) {
       return false
     }

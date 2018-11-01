@@ -1,6 +1,8 @@
 import * as React from 'react'
 import WorldMapTile from '../../WorldMapTile/WorldMapTile'
 
+import './NanTong.less'
+
 export default class NanTong extends React.Component {
 
   constructor () {

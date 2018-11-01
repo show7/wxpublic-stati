@@ -29,7 +29,7 @@ export default class WorldMapTile extends React.Component {
       display: 'inline-block',
       width: '3.2rem',
       height: '3.2rem',
-      // background: `url(https://static.iqycamp.com/world-map-yjzyqr65.jpg)`,
+      background: `url(https://static.iqycamp.com/world-map-yjzyqr65.jpg)`,
       backgroundPosition: `-${xOffSet * 32 / 10}rem -${yOffSet * 32 / 10}rem`
     }
   }
