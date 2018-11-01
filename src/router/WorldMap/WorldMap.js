@@ -4,8 +4,16 @@ import NanTong from '../../component/WorldMaps/NanTong/NanTong'
 import KeyBind from '../../utils/KeyBind'
 import Movement from '../../component/Character/Movement/Movement'
 import SpiriteAllocation from '../../component/SpiriteAllocation/SpiriteAllocation'
+import SimpleDialog from '../../component/SimpleDialog/SimpleDialog'
 
-@inject('worldMapStore')
+import './WorldMap.less'
+
+@inject(
+  'worldMapController',
+  'dialogModel',
+  'operatorModel',
+  'spiriteModel'
+)
 @observer
 export default class WorldMap extends React.Component {
 
@@ -25,24 +33,24 @@ export default class WorldMap extends React.Component {
 
   keyBindFunction (event) {
     const {
-      xPosition,
-      yPosition,
-      setPosition,
-      moveToNextPoint
-    } = this.props.worldMapStore
+      worldMapController,
+      dialogModel,
+      operatorModel,
+      spiriteModel
+    } = this.props
     const mapData = this.refs.mapInstance.getMapData()
     switch (event.keyCode) {
       case KeyBind.ArrowUp:
-        moveToNextPoint(mapData, xPosition, yPosition - 1)
+        worldMapController.moveToNextPoint(mapData, operatorModel.xPosition, operatorModel.yPosition - 1)
         break
       case KeyBind.ArrowDown:
-        moveToNextPoint(mapData, xPosition, yPosition + 1)
+        worldMapController.moveToNextPoint(mapData, operatorModel.xPosition, operatorModel.yPosition + 1)
         break
       case KeyBind.ArrowLeft:
-        moveToNextPoint(mapData, xPosition - 1, yPosition)
+        worldMapController.moveToNextPoint(mapData, operatorModel.xPosition - 1, operatorModel.yPosition)
         break
       case KeyBind.ArrowRight:
-        moveToNextPoint(mapData, xPosition + 1, yPosition)
+        worldMapController.moveToNextPoint(mapData, operatorModel.xPosition + 1, operatorModel.yPosition)
         break
       default:
         break
@@ -51,19 +59,22 @@ export default class WorldMap extends React.Component {
 
   render () {
     const {
-      xPosition,
-      yPosition,
-      spirites
-    } = this.props.worldMapStore
+      dialogModel,
+      operatorModel,
+      spiriteModel
+    } = this.props
 
     return (
       <div className="world-map-container">
+        {/* 地图 */}
         <NanTong ref="mapInstance"/>
-        <Movement xPosition={xPosition}
-                  yPosition={yPosition}/>
+        {/* 人物 */}
+        <Movement xPosition={operatorModel.xPosition}
+                  yPosition={operatorModel.yPosition}/>
+        {/* 地图事件地址 */}
         <div className="spirites">
           {
-            spirites.map((spirite, index) => {
+            spiriteModel.spirites.map((spirite, index) => {
               return <SpiriteAllocation key={index}
                                         xPosition={spirite.xPosition}
                                         yPosition={spirite.yPosition}
@@ -71,6 +82,12 @@ export default class WorldMap extends React.Component {
             })
           }
         </div>
+        {/* 对话窗口 */}
+        {
+          dialogModel.show &&
+          <SimpleDialog avatar={dialogModel.avatar}
+                        message={dialogModel.message}/>
+        }
       </div>
     )
   }
