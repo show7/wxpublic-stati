@@ -3,8 +3,8 @@ import { observer, inject } from 'mobx-react'
 import NanTong from '../../component/WorldMaps/NanTong/NanTong'
 import KeyBind from '../../utils/KeyBind'
 import Movement from '../../component/Character/Movement/Movement'
-import SpiriteAllocation from '../../component/SpiriteAllocation/SpiriteAllocation'
 import SimpleDialog from '../../component/SimpleDialog/SimpleDialog'
+import SpiriteAllocation from '../../component/SpiriteAllocation/SpiriteAllocation'
 
 import './WorldMap.less'
 
@@ -24,14 +24,16 @@ export default class WorldMap extends React.Component {
 
   componentDidMount () {
     console.log(this.props)
-    window.addEventListener('keydown', this.keyBindFunction.bind(this))
+    window.addEventListener('keydown', this.keyDownFunction.bind(this), false)
+    window.addEventListener('click', this.mouseClickFunction.bind(this), false)
   }
 
   componentWillUnmount () {
-    window.removeEventListener('keydown', this.keyBindFunction.bind(this))
+    window.removeEventListener('keydown', this.keyDownFunction.bind(this))
+    window.removeEventListener('click', this.mouseClickFunction.bind(this))
   }
 
-  keyBindFunction (event) {
+  keyDownFunction (event) {
     const {
       worldMapController,
       dialogModel,
@@ -55,6 +57,10 @@ export default class WorldMap extends React.Component {
       default:
         break
     }
+  }
+
+  mouseClickFunction (event) {
+    console.log('mouse click:', event)
   }
 
   render () {
