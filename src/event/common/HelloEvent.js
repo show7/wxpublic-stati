@@ -7,11 +7,14 @@ const helloEvent = function * () {
   // 打开对话框
   dialogModel.showDialog()
   // 更改文案
-  dialogModel.setDialogData({ message: '嗯嗯' })
+  dialogModel.setDialogData({ message: '你好，我是欢迎机器人' })
   yield
 
   // 更改文案
-  dialogModel.setDialogData({ message: '有什么事情么' })
+  dialogModel.setDialogData({ message: '这是一个 demo 世界' })
+  yield
+
+  dialogModel.setDialogData({ message: '欢迎下次再来' })
   yield
 
   // 隐藏弹框
