@@ -41,7 +41,10 @@ export default class WorldMapTile extends React.Component {
 
     return (
       <div className="world-tile-component"
-           style={this.getInnerStyle()}>{tileSequence}</div>
+           style={this.getInnerStyle()}>
+        {/* 可进行测试、开发版本的区分展示 */}
+        {/*{tileSequence}*/}
+      </div>
     )
   }
 
