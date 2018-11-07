@@ -2,7 +2,7 @@
 使用 react、mobx 和 electron 构建一个简单的游戏 demo
 
 # 先展示下 demo 样例
-![图片](http://static.olitan.top/rpg-demo.jpeg)
+![图片](http://static.olitan.top/rpg-demo-ade415fs.jpeg)
 
 ## 操作说明
 1. 键盘 上下左右，控制人物移动；
