@@ -2,6 +2,7 @@
 使用 react、mobx 和 electron 构建一个简单的游戏 demo
 
 # 先展示下 demo 样例
+
 原始砖块图材料图
 ![砖块图](http://static.olitan.top/world-map-yjzyqr65.jpg)
 
