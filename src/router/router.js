@@ -1,15 +1,15 @@
 import * as React from 'react'
-import { MemoryRouter, Switch, Route } from 'react-router-dom'
-import WorldMap from './WorldMap/WorldMap'
+import { BrowserRouter, Route } from 'react-router-dom'
+import BasicLayout from '../layout/BasicLayout/BasicLayout'
 
 const router = (
-  <MemoryRouter>
-    <Switch>
-      <Route exact
-             path="/"
-             component={WorldMap}/>
-    </Switch>
-  </MemoryRouter>
+  <BrowserRouter>
+    <div>
+      <Route path="/"
+             component={BasicLayout}>
+      </Route>
+    </div>
+  </BrowserRouter>
 )
 
 export default router

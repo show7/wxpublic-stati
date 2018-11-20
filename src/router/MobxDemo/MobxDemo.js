@@ -1,7 +1,8 @@
 import * as React from 'react'
+import { Button } from 'antd'
 import { observer, inject } from 'mobx-react'
 
-@inject("profileStore")
+@inject('mobxDemoModel')
 @observer
 export default class MobxDemo extends React.Component {
 
@@ -13,10 +14,16 @@ export default class MobxDemo extends React.Component {
     console.log(this.props)
   }
 
+  changeName () {
+    this.props.mobxDemoModel.setName('程序员')
+  }
+
   render () {
     return (
       <div>
-        <div>{this.props.profileStore.timer}</div>
+        <Button onClick={() => this.changeName()}
+                type="primary">Primary</Button>
+        <div>{this.props.mobxDemoModel.name}</div>
       </div>
     )
   }

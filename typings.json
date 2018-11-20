@@ -1,13 +1,10 @@
 {
   "name": "leonidas",
   "dependencies": {
-    "react": "registry:npm/react#15.0.1+20170104200836",
-    "react-dom": "registry:npm/react-dom#15.0.1+20160826174104",
     "react-redux": "registry:npm/react-redux#4.4.0+20160614222153",
     "webpack": "registry:npm/webpack#1.12.9+20160418172948"
   },
   "globalDependencies": {
-    "electron": "registry:dt/electron#1.4.8+20170316233216",
     "react-router-dom": "registry:dt/react-router-dom#4.0.0+20170323201651"
   }
 }

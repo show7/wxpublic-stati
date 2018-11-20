@@ -1,10 +1,10 @@
 import $ from 'jquery'
 import 'animate.css'
 import 'normalize.css'
+import 'antd/dist/antd.css';
 import { importExternalCss, importExternalJs } from '../utils/domUtil'
 
 // 阿里 iconfon 引入
-// importExternalCss('//at.alicdn.com/t/font_677914_slzhroh3um.css')
 importExternalJs('https://at.alicdn.com/t/font_677914_slzhroh3um.js')
 
 // 引入 animate-css，并给 jquery 扩展方法
@@ -16,5 +16,5 @@ $.fn.extend({
       if (callback) callback()
     })
     return this
-  },
+  }
 })
