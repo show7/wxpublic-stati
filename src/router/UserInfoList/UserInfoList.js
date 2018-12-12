@@ -123,13 +123,13 @@ class UserInfoForm extends React.Component {
             layout="inline">
         <Row gutter={24}>
           <Col span={6}>
-            <FormItem label="学员姓名">
-              {getFieldDecorator(`field-0`, {})(<Input placeholder="placeholder"/>)}
+            <FormItem label="学员昵称">
+              {getFieldDecorator(`field-0`, {})(<Input placeholder="请输入学员昵称"/>)}
             </FormItem>
           </Col>
           <Col span={6}>
             <FormItem label="圈外Id（RiseId）">
-              {getFieldDecorator(`field-1`, {})(<Input placeholder="placeholder"/>)}
+              {getFieldDecorator(`field-1`, {})(<Input placeholder="请输入圈外Id（RiseId）"/>)}
             </FormItem>
           </Col>
           <Col span={6}>
@@ -158,14 +158,6 @@ const UserInfoFormWrapper = Form.create()(UserInfoForm)
 @observer
 export default class UserInfoList extends React.Component {
 
-  state = {
-    str: 'helloworld'
-  }
-
-  componentDidMount () {
-
-  }
-
   handleHideModal () {
     const { userInfoListModel } = this.props
     userInfoListModel.modalVisible = false
@@ -177,7 +169,8 @@ export default class UserInfoList extends React.Component {
     return (
       <div className="userinfo-list-container">
         <UserInfoFormWrapper/>
-        <Table columns={userInfoListModel.columnDefinition}
+        <Table className="userinfo-table"
+               columns={userInfoListModel.columnDefinition}
                dataSource={userInfoListModel.columnData}/>
 
         <Modal title={userInfoListModel.modalTitle}
