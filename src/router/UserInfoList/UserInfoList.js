@@ -19,7 +19,6 @@ class UserInfoForm extends React.Component {
     const { userInfoListModel } = this.props
     const { getFieldsValue } = this.props.form
 
-
     userInfoListModel.setResults([5])
   }
 
