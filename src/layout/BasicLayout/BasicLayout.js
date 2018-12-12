@@ -3,6 +3,7 @@ import { Layout, Menu, Icon, Breadcrumb } from 'antd'
 import { Route } from 'react-router-dom'
 import MobxDemo from '../../router/MobxDemo/MobxDemo'
 import SideMenu from '../SideMenu/SideMenu'
+import UserInfoList from '../../router/UserInfoList/UserInfoList'
 
 const { Header, Content, Footer, Sider } = Layout
 const SubMenu = Menu.SubMenu
@@ -40,6 +41,8 @@ export default class BasicLayout extends React.Component {
             <div style={{ marginTop: '16px', padding: 24, background: '#fff', minHeight: 360 }}>
               <Route path="/demo"
                      component={MobxDemo}/>
+              <Route path="/list/userinfo-list"
+                     component={UserInfoList}/>
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>上海晓圈教育科技有限公司</Footer>

@@ -1,8 +1,12 @@
+/**
+ * 引入各类三方文件
+ */
+import { importExternalCss, importExternalJs } from '../utils/domUtil'
+
 import $ from 'jquery'
 import 'animate.css'
 import 'normalize.css'
-import 'antd/dist/antd.css';
-import { importExternalCss, importExternalJs } from '../utils/domUtil'
+import '../styles/common.less'
 
 // 阿里 iconfon 引入
 importExternalJs('https://at.alicdn.com/t/font_677914_slzhroh3um.js')

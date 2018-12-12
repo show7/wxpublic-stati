@@ -5,8 +5,6 @@ import { Provider } from 'mobx-react'
 import router from './router/router'
 import rootStore from './store/rootStore'
 
-import './styles/common.less'
-
 ReactDOM.render(
   <Provider {...rootStore}>
     {router}
