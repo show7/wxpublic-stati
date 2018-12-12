@@ -1,10 +1,9 @@
-import { observable, action } from 'mobx'
+import { observable } from 'mobx'
 
 class UserInfoListModel {
 
   @observable
   columnData = []
-
   @observable
   columnDefinition = []
 

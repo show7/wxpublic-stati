@@ -116,20 +116,24 @@ router.get(`/api/crm/student/audioCourse`, (req, res) => {
   res.status(200).json({
     code: 200,
     msg: {
-      period: '2018-12-16 至 2018-12-23',
-      teacher: '袁泉',
       historyList: [
         {
+          period: '2018-12-16 至 2018-12-23',
+          teacher: '袁泉',
           day: '12-06',
           time: '12:30',
           markTime: '11:30'
         },
         {
+          period: '2018-12-16 至 2018-12-23',
+          teacher: '袁泉',
           day: '12-07',
           time: '10:33',
           markTime: '11:30'
         },
         {
+          period: '2018-12-16 至 2018-12-23',
+          teacher: '袁泉',
           day: '12-08',
           time: '11:30',
           markTime: '15:30'
