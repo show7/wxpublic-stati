@@ -3,11 +3,19 @@ import { observable, action } from 'mobx'
 class UserInfoListModel {
 
   @observable
-  results = [1]
+  columnData = {}
+
+  @observable
+  columnDefinition = []
 
   @action.bound
-  setResults (results) {
-    this.results = results
+  setColumnData (columnData) {
+    this.columnData = columnData
+  }
+
+  @action.bound
+  setColumnDefinition (columnDefinition) {
+    this.columnDefinition = columnDefinition
   }
 
 }

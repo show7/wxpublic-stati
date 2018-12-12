@@ -26,34 +26,76 @@ router.get(`/api/crm/userinfo`, (req, res) => {
 router.get(`/api/crm/student/userinfo/list`, (req, res) => {
   req.params = {
     nickName: '张三',
-    riseId: 'fijweif'
+    riseId: 'fijweif',
+    page: 1
   }
   res.status(200).json({
     code: 200,
-    msg: [
-      {
-        profileId: 3,
-        nickName: '张三',
-        age: '23-40',
-        identity: '大学生',
-        riseId: 'fjeiwjp',
-        bottleneck: '跳槽', // 痛点
-        paidList: [
-          {
-            project: 'L1项目',
-            paidTime: '2018-11-23 23:22:00',
-            paidPrice: 30,
-            promoter: '李四'
-          }
-        ],
-        couponList: [
-          {
-            description: '好友邀请',
-            amount: 100
-          }
-        ]
-      }
-    ]
+    msg: {
+      page: 1,
+      pageSize: 20,
+      totalCount: 200,
+      totalPage: 20,
+      isEnd: false,
+      columnDefinition: [
+        {
+          title: '昵称',
+          dataIndex: 'nickName',
+        },
+        {
+          title: '年龄',
+          dataIndex: 'age',
+        },
+        {
+          title: '身份',
+          dataIndex: 'identity',
+        },
+      ],
+      columnData: [
+        {
+          riseId: 'fjeiwjp',
+          nickName: '张三',
+          age: '23-40',
+          identity: '大学生',
+          bottleneck: '跳槽', // 痛点
+          paidList: [
+            {
+              project: 'L1项目',
+              paidTime: '2018-11-23 23:22:00',
+              paidPrice: 30,
+              promoter: '李四'
+            }
+          ],
+          couponList: [
+            {
+              description: '好友邀请',
+              amount: 100
+            }
+          ]
+        },
+        {
+          riseId: 'fjeiwjp',
+          nickName: '张三',
+          age: '23-40',
+          identity: '大学生',
+          bottleneck: '跳槽', // 痛点
+          paidList: [
+            {
+              project: 'L1项目',
+              paidTime: '2018-11-23 23:22:00',
+              paidPrice: 30,
+              promoter: '李四'
+            }
+          ],
+          couponList: [
+            {
+              description: '好友邀请',
+              amount: 100
+            }
+          ]
+        }
+      ]
+    }
   })
 })
 

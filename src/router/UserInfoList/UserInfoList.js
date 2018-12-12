@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { observer, inject } from 'mobx-react'
 import {
-  Form, Row, Col, Input, Button, Icon,
+  Form, Row, Col, Input, Button, Table,
 } from 'antd'
 import './UserInfoList.less'
+import Api from '../../api/Api'
+import userInfoListModel from './UserInfoListModel'
 
 const FormItem = Form.Item
 
@@ -12,14 +14,15 @@ const FormItem = Form.Item
 class UserInfoForm extends React.Component {
 
   componentDidMount () {
-    console.log(this.props)
   }
 
-  handleSearchResults () {
+  async handleSearchResults () {
     const { userInfoListModel } = this.props
     const { getFieldsValue } = this.props.form
-
-    userInfoListModel.setResults([5])
+    let userInfoListRes = await Api.loadStudentsUserInfoList({})
+    const { columnDefinition, columnData } = userInfoListRes.msg
+    userInfoListModel.setColumnDefinition(columnDefinition)
+    userInfoListModel.setColumnData(columnData)
   }
 
   handleResetInput () {
@@ -74,7 +77,6 @@ export default class UserInfoList extends React.Component {
   }
 
   componentDidMount () {
-    console.log('list:', this.props)
   }
 
   render () {
@@ -83,7 +85,11 @@ export default class UserInfoList extends React.Component {
     return (
       <div className="userinfo-list-container">
         <UserInfoFormWrapper/>
-        <h1>{this.props.userInfoListModel.results[0]}</h1>
+        <Table columns={columns}
+               dataSource={data}
+               bordered
+               size="middle"
+               scroll={{ x: '130%', y: 240 }}/>
       </div>
     )
   }
