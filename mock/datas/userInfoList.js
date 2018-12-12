@@ -111,7 +111,7 @@ router.get(`/api/crm/student/audioCourse`, (req, res) => {
     msg: {
       period: '2018-12-16 至 2018-12-23',
       teacher: '袁泉',
-      history: [
+      historyList: [
         {
           day: '12-06',
           time: '12:30',
