@@ -32,11 +32,6 @@ router.get(`/api/crm/student/userinfo/list`, (req, res) => {
   res.status(200).json({
     code: 200,
     msg: {
-      page: 1,
-      pageSize: 20,
-      totalCount: 200,
-      totalPage: 20,
-      isEnd: false,
       columnDefinition: [
         {
           title: '昵称',
@@ -50,9 +45,18 @@ router.get(`/api/crm/student/userinfo/list`, (req, res) => {
           title: '身份',
           dataIndex: 'identity',
         },
+        {
+          title: 'RiseId',
+          dataIndex: 'riseId',
+        },
+        {
+          title: '学习目的',
+          dataIndex: 'bottleneck',
+        },
       ],
       columnData: [
         {
+          key: 1,
           riseId: 'fjeiwjp',
           nickName: '张三',
           age: '23-40',
@@ -60,6 +64,7 @@ router.get(`/api/crm/student/userinfo/list`, (req, res) => {
           bottleneck: '跳槽', // 痛点
           paidList: [
             {
+              key: 1,
               project: 'L1项目',
               paidTime: '2018-11-23 23:22:00',
               paidPrice: 30,
@@ -68,12 +73,14 @@ router.get(`/api/crm/student/userinfo/list`, (req, res) => {
           ],
           couponList: [
             {
+              key: 1,
               description: '好友邀请',
               amount: 100
             }
           ]
         },
         {
+          key: 2,
           riseId: 'fjeiwjp',
           nickName: '张三',
           age: '23-40',
