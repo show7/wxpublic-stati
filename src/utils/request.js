@@ -7,18 +7,12 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'
 // 对于 700 返回，默认跳转登录页
 axios.interceptors.response.use(function (response) {
   if (response.status === 700) {
-    if (isMobile()) {
-      window.location.href = decodeURI(`${window.location.protocol}//${window.location.host}/wx/oauth/auth?callbackUrl=`) + encodeURIComponent(window.location.href)
-    } else if (isPc()) {
-      window.location.href = decodeURI(`${window.location.protocol}//${window.location.host}/login?callbackUrl=`) + encodeURIComponent(window.location.href)
-    } else {
-      window.location.href = decodeURI(`${window.location.protocol}//${window.location.host}/wx/oauth/auth?callbackUrl=`) + encodeURIComponent(window.location.href)
-    }
+    window.location.href = decodeURI(`${window.location.protocol}//${window.location.host}/login?callbackUrl=`) + encodeURIComponent(window.location.href)
   } else {
     return response
   }
 }, function (error) {
-  // proxyUtil.alertMessage(error)
+  throw error
 })
 
 /**
@@ -29,23 +23,15 @@ axios.interceptors.response.use(function (response) {
  */
 export function pget (url, params = {}) {
   try {
-    // proxyUtil.startLoading()
     return axios.get(url, {
       params: params,
       validateStatus: function (status) {
         return status >= 200 && status < 300 || status == 700
       }
     }).then(response => {
-      // proxyUtil.endLoading()
-      let code = response.data.code
-      let message = response.data.msg
-      if (code > 220 || code < 200) {
-        // proxyUtil.alertMessage(message.toString())
-      }
       return response.data
     }).catch(error => {
-      // proxyUtil.endLoading()
-      // proxyUtil.alertMessage(error)
+      throw error
     })
   } catch (err) {
     console.error(err.type)
@@ -61,18 +47,10 @@ export function pget (url, params = {}) {
  */
 export function ppost (url, params = {}) {
   try {
-    // proxyUtil.startLoading()
     return axios.post(url, params).then(response => {
-      // proxyUtil.endLoading()
-      let code = response.data.code
-      let message = response.data.msg
-      if (code > 220 || code < 200) {
-        // proxyUtil.alertMessage(message.toString())
-      }
       return response.data
     }).catch(error => {
-      // proxyUtil.endLoading()
-      // proxyUtil.alertMessage(error)
+      throw error
     })
   } catch (err) {
     console.error(err.type)
@@ -89,14 +67,9 @@ export function ppost (url, params = {}) {
 export function ppostMute (url, params = {}) {
   try {
     return axios.post(url, params).then(response => {
-      let code = response.data.code
-      let message = response.data.msg
-      if (code > 220 || code < 200) {
-        // proxyUtil.alertMessage(message.toString())
-      }
       return response.data
     }).catch(error => {
-      // proxyUtil.alertMessage(error)
+      throw error
     })
   } catch (err) {
     console.error(err.type)
@@ -106,19 +79,10 @@ export function ppostMute (url, params = {}) {
 
 export function asyncAll (requests = []) {
   try {
-    // proxyUtil.startLoading()
     return axios.all(requests).then(resultArr => {
-      // proxyUtil.endLoading()
-      for (let result of resultArr) {
-        let code = result.code
-        if (code > 220 || code < 200) {
-          // proxyUtil.alertMessage(result.msg)
-        }
-      }
       return resultArr
     }).catch(error => {
-      // proxyUtil.endLoading()
-      // proxyUtil.alertMessage(error)
+      throw error
     })
   } catch (err) {
     console.error(err.type)

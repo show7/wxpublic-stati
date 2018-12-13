@@ -2,6 +2,7 @@
   "name": "leonidas",
   "version": "1.0.0",
   "scripts": {
+    "local": "webpack-dev-server --config ./config/webpack.local.js",
     "dev": "webpack-dev-server --config ./config/webpack.dev.js",
     "prod": "webpack --config ./config/webpack.prod.js"
   },
