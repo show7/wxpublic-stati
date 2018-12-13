@@ -35,7 +35,7 @@ export default class BasicLayout extends React.Component {
             <Menu.Item key="1">
               <Icon type="pie-chart"/>
               <span>Dashboard</span>
-              <Link to="/">Dashboard</Link>
+              <Link to="/"></Link>
             </Menu.Item>
             <SubMenu key="2"
                      title={<span><Icon type="user"/><span>学员信息</span></span>}>
