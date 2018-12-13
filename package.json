@@ -1,5 +1,5 @@
 {
-  "name": "leonidas",
+  "name": "spiderman",
   "version": "1.0.0",
   "scripts": {
     "local": "webpack-dev-server --config ./config/webpack.local.js",
