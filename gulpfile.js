@@ -3,6 +3,6 @@ var exec = require('child_process').exec
 
 //  上传文件
 gulp.task('ftp_rise', function () {
-  exec(`scp build/*.js ftpuser@101.132.188.185:/data/static/aristotle_js/mobile`)
+  exec(`scp dist/* ftpuser@101.132.188.185:/data/static/script/spiderman-static`)
   exec('exit')
 })

@@ -35,12 +35,12 @@ export default class BasicLayout extends React.Component {
             <Menu.Item key="1">
               <Icon type="pie-chart"/>
               <span>Dashboard</span>
-              <Link to="/"></Link>
+              <Link to="/crm"></Link>
             </Menu.Item>
             <SubMenu key="2"
                      title={<span><Icon type="user"/><span>学员信息</span></span>}>
               <Menu.Item key="3">
-                <Link to="/list/userinfo-list">音频课学员</Link>
+                <Link to="/crm/list/userinfo-list">音频课学员</Link>
               </Menu.Item>
             </SubMenu>
           </Menu>
@@ -49,9 +49,9 @@ export default class BasicLayout extends React.Component {
           <CustomizeHeader/>
           <Content style={{ margin: '0 16px' }}>
             <div style={{ marginTop: '16px', padding: 24, background: '#fff', minHeight: 360 }}>
-              <Route path="/demo"
+              <Route path="/crm/demo"
                      component={MobxDemo}/>
-              <Route path="/list/userinfo-list"
+              <Route path="/crm/list/userinfo-list"
                      component={UserInfoList}/>
             </div>
           </Content>
