@@ -1,4 +1,6 @@
 import * as axios from 'axios'
+import { message as antdMessage } from 'antd'
+
 // 根据当前所在平台，添加 header
 let platform = 'crm'
 axios.defaults.headers.platform = platform
@@ -19,7 +21,6 @@ axios.interceptors.response.use(function (response) {
  * get 请求
  * @param url 请求资源地址
  * @param params 请求参数
- * @returns {Promise<never | T> | Promise.<T>}
  */
 export function pget (url, params = {}) {
   try {
@@ -29,6 +30,11 @@ export function pget (url, params = {}) {
         return status >= 200 && status < 300 || status == 700
       }
     }).then(response => {
+      let code = response.data.code
+      let message = response.data.msg
+      if (code > 220 || code < 200) {
+        antdMessage.warn(message)
+      }
       return response.data
     }).catch(error => {
       throw error
@@ -43,11 +49,15 @@ export function pget (url, params = {}) {
  * post 请求
  * @param url 请求资源地址
  * @param params 请求参数
- * @returns {Promise<never | T> | Promise.<T>}
  */
 export function ppost (url, params = {}) {
   try {
     return axios.post(url, params).then(response => {
+      let code = response.data.code
+      let message = response.data.msg
+      if (code > 220 || code < 200) {
+        antdMessage.warn(message)
+      }
       return response.data
     }).catch(error => {
       throw error
@@ -62,11 +72,15 @@ export function ppost (url, params = {}) {
  * 静默 post 请求
  * @param url 请求资源地址
  * @param params 请求参数
- * @returns {Promise<never | T> | Promise.<T>}
  */
 export function ppostMute (url, params = {}) {
   try {
     return axios.post(url, params).then(response => {
+      let code = response.data.code
+      let message = response.data.msg
+      if (code > 220 || code < 200) {
+        antdMessage.warn(message)
+      }
       return response.data
     }).catch(error => {
       throw error

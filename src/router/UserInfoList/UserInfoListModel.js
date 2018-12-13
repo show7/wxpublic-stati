@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { observable, action } from 'mobx'
-import { Divider } from 'antd'
+import { Divider, message } from 'antd'
 import Api from '../../api/Api'
 
 // 付费购买情况弹框表格定义
@@ -81,6 +81,12 @@ class UserInfoListModel {
 
   @action.bound
   async handleSearchResults (values) {
+    const { riseId, nickName } = values
+    if (!riseId && !nickName) {
+      message.error('至少填写一个搜索条件', 1)
+      return
+    }
+
     let userInfoListRes = await Api.loadStudentsUserInfoList(values)
     const { columnDefinition, columnData } = userInfoListRes.msg
     columnDefinition.push({
