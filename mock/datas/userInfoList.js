@@ -118,6 +118,7 @@ router.get(`/api/crm/student/audioCourse`, (req, res) => {
     msg: {
       historyList: [
         {
+          key: 1,
           period: '2018-12-16 至 2018-12-23',
           teacher: '袁泉',
           day: '12-06',
@@ -125,6 +126,7 @@ router.get(`/api/crm/student/audioCourse`, (req, res) => {
           markTime: '11:30'
         },
         {
+          key: 2,
           period: '2018-12-16 至 2018-12-23',
           teacher: '袁泉',
           day: '12-07',
@@ -132,6 +134,7 @@ router.get(`/api/crm/student/audioCourse`, (req, res) => {
           markTime: '11:30'
         },
         {
+          key: 3,
           period: '2018-12-16 至 2018-12-23',
           teacher: '袁泉',
           day: '12-08',

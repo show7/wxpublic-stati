@@ -107,41 +107,42 @@ class UserInfoForm extends React.Component {
 
   async handleSearchResults () {
     const { userInfoListModel, form: { getFieldsValue, validateFields } } = this.props
-
-    validateFields((errors, values) => {
-      console.log('111111')
-      console.log(errors)
-      console.log(values)
+    validateFields(async (errors, values) => {
+      const { nickName, riseId } = values
+      if (!nickName && !riseId) {
+        userInfoListModel.checkSearchValidator = true
+      } else {
+        let userInfoListRes = await Api.loadStudentsUserInfoList({})
+        const { columnDefinition, columnData } = userInfoListRes.msg
+        columnDefinition.push({
+          title: '操作',
+          key: 'operation',
+          fixed: 'right',
+          width: 300,
+          render: (text, record, index) => (
+            <span>
+              <a href="javascript:"
+                 onClick={() => this.handleClickAction(this.ActionType.ViewPurchaseDetail, text, record, index)}>
+                付费情况
+              </a>
+              <Divider type="vertical"/>
+              <a href="javascript:"
+                 onClick={() => this.handleClickAction(this.ActionType.ViewCouponsDetail, text, record, index)}>
+                优惠券
+              </a>
+              <Divider type="vertical"/>
+              <a href="javascript:"
+                 onClick={() => this.handleClickAction(this.ActionType.ViewAudioCourseDetail, text, record, index)}>
+                音频课
+              </a>
+            </span>
+          )
+        })
+        userInfoListModel.columnDefinition = columnDefinition
+        userInfoListModel.columnData = columnData
+      }
     })
 
-    let userInfoListRes = await Api.loadStudentsUserInfoList({})
-    const { columnDefinition, columnData } = userInfoListRes.msg
-    columnDefinition.push({
-      title: '操作',
-      key: 'operation',
-      fixed: 'right',
-      width: 300,
-      render: (text, record, index) => (
-        <span>
-          <a href="javascript:"
-             onClick={() => this.handleClickAction(this.ActionType.ViewPurchaseDetail, text, record, index)}>
-            付费情况
-          </a>
-          <Divider type="vertical"/>
-          <a href="javascript:"
-             onClick={() => this.handleClickAction(this.ActionType.ViewCouponsDetail, text, record, index)}>
-            优惠券
-          </a>
-          <Divider type="vertical"/>
-          <a href="javascript:"
-             onClick={() => this.handleClickAction(this.ActionType.ViewAudioCourseDetail, text, record, index)}>
-            音频课
-          </a>
-        </span>
-      )
-    })
-    userInfoListModel.columnDefinition = columnDefinition
-    userInfoListModel.columnData = columnData
   }
 
   handleResetInput () {
@@ -150,21 +151,19 @@ class UserInfoForm extends React.Component {
   }
 
   render () {
-    const { getFieldDecorator } = this.props.form
+    const { userInfoListModel, form: { getFieldDecorator } } = this.props
     return (
       <Form className="userinfo-form"
             layout="inline">
         <Row gutter={24}>
           <Col span={8}>
             <FormItem label="学员昵称">
-              {getFieldDecorator(`field-0`, {
-                rules: [{ required: this.state.checkNick, message: 'Please input your nickname' }]
-              })(<Input placeholder="请输入"/>)}
+              {getFieldDecorator(`nickName`, {})(<Input placeholder="请输入"/>)}
             </FormItem>
           </Col>
           <Col span={8}>
             <FormItem label="圈外Id（RiseId）">
-              {getFieldDecorator(`field-1`, {})(<Input placeholder="请输入"/>)}
+              {getFieldDecorator(`riseId`, {})(<Input placeholder="请输入"/>)}
             </FormItem>
           </Col>
           <Col span={8}>
