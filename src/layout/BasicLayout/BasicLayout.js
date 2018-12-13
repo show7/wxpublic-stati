@@ -8,6 +8,8 @@ import UserInfoList from '../../router/UserInfoList/UserInfoList'
 const { Header, Content, Footer, Sider } = Layout
 const SubMenu = Menu.SubMenu
 
+const URI_PREFIX = '/crm'
+
 export default class BasicLayout extends React.Component {
 
   constructor () {
@@ -35,12 +37,12 @@ export default class BasicLayout extends React.Component {
             <Menu.Item key="1">
               <Icon type="pie-chart"/>
               <span>Dashboard</span>
-              <Link to="/crm"></Link>
+              <Link to={URI_PREFIX}></Link>
             </Menu.Item>
             <SubMenu key="2"
                      title={<span><Icon type="user"/><span>学员信息</span></span>}>
               <Menu.Item key="3">
-                <Link to="/crm/list/userinfo-list">音频课学员</Link>
+                <Link to={`${URI_PREFIX}/list/userinfo-list`}>音频课学员</Link>
               </Menu.Item>
             </SubMenu>
           </Menu>
@@ -49,9 +51,9 @@ export default class BasicLayout extends React.Component {
           <CustomizeHeader/>
           <Content style={{ margin: '0 16px' }}>
             <div style={{ marginTop: '16px', padding: 24, background: '#fff', minHeight: 360 }}>
-              <Route path="/crm/demo"
+              <Route path={`${URI_PREFIX}/demo`}
                      component={MobxDemo}/>
-              <Route path="/crm/list/userinfo-list"
+              <Route path={`${URI_PREFIX}/list/userinfo-list`}
                      component={UserInfoList}/>
             </div>
           </Content>
