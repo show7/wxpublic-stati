@@ -26,34 +26,83 @@ router.get(`/api/crm/userinfo`, (req, res) => {
 router.get(`/api/crm/student/userinfo/list`, (req, res) => {
   req.params = {
     nickName: '张三',
-    riseId: 'fijweif'
+    riseId: 'fijweif',
+    page: 1
   }
   res.status(200).json({
     code: 200,
-    msg: [
-      {
-        profileId: 3,
-        nickName: '张三',
-        age: '23-40',
-        identity: '大学生',
-        riseId: 'fjeiwjp',
-        bottleneck: '跳槽', // 痛点
-        paidList: [
-          {
-            project: 'L1项目',
-            paidTime: '2018-11-23 23:22:00',
-            paidPrice: 30,
-            promoter: '李四'
-          }
-        ],
-        couponList: [
-          {
-            description: '好友邀请',
-            amount: 100
-          }
-        ]
-      }
-    ]
+    msg: {
+      columnDefinition: [
+        {
+          title: '昵称',
+          dataIndex: 'nickName',
+        },
+        {
+          title: '年龄',
+          dataIndex: 'age',
+        },
+        {
+          title: '身份',
+          dataIndex: 'identity',
+        },
+        {
+          title: 'RiseId',
+          dataIndex: 'riseId',
+        },
+        {
+          title: '学习目的',
+          dataIndex: 'bottleneck',
+        },
+      ],
+      columnData: [
+        {
+          key: 1,
+          riseId: 'fjeiwjp',
+          nickName: '张三',
+          age: '23-40',
+          identity: '大学生',
+          bottleneck: '跳槽', // 痛点
+          paidList: [
+            {
+              key: 1,
+              project: 'L1项目',
+              paidTime: '2018-11-23 23:22:00',
+              paidPrice: 30,
+              promoter: '李四'
+            }
+          ],
+          couponList: [
+            {
+              key: 1,
+              description: '好友邀请',
+              amount: 100
+            }
+          ]
+        },
+        {
+          key: 2,
+          riseId: 'fjeiwjp',
+          nickName: '张三',
+          age: '23-40',
+          identity: '大学生',
+          bottleneck: '跳槽', // 痛点
+          paidList: [
+            {
+              project: 'L1项目',
+              paidTime: '2018-11-23 23:22:00',
+              paidPrice: 30,
+              promoter: '李四'
+            }
+          ],
+          couponList: [
+            {
+              description: '好友邀请',
+              amount: 100
+            }
+          ]
+        }
+      ]
+    }
   })
 })
 
@@ -67,20 +116,27 @@ router.get(`/api/crm/student/audioCourse`, (req, res) => {
   res.status(200).json({
     code: 200,
     msg: {
-      period: '2018-12-16 至 2018-12-23',
-      teacher: '袁泉',
-      history: [
+      historyList: [
         {
+          key: 1,
+          period: '2018-12-16 至 2018-12-23',
+          teacher: '袁泉',
           day: '12-06',
           time: '12:30',
           markTime: '11:30'
         },
         {
+          key: 2,
+          period: '2018-12-16 至 2018-12-23',
+          teacher: '袁泉',
           day: '12-07',
           time: '10:33',
           markTime: '11:30'
         },
         {
+          key: 3,
+          period: '2018-12-16 至 2018-12-23',
+          teacher: '袁泉',
           day: '12-08',
           time: '11:30',
           markTime: '15:30'

@@ -4,10 +4,22 @@
 <head>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>圈外同学 CRM</title>
 </head>
 <body>
 <div id="root"></div>
-<script type="text/javascript"
-        src="/app.bundle.js"></script>
+<script type="text/javascript">
+  let xmlhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP')
+  xmlhttp.onreadystatechange = function () {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      let bundleScript = document.createElement('script')
+      bundleScript.src = xmlhttp.responseText
+      bundleScript.defer = true
+      document.body.appendChild(bundleScript)
+    }
+  }
+  xmlhttp.open('GET', '/api/crm/guest/resource', true)
+  xmlhttp.send()
+</script>
 </body>
 </html>

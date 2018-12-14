@@ -1,8 +1,10 @@
 import * as React from 'react'
 import { observer, inject } from 'mobx-react'
 import {
-  Form, Row, Col, Input, Button, Icon,
+  Form, Row, Col, Input, Button, Table, Modal
 } from 'antd'
+import userInfoListModel from './UserInfoListModel'
+
 import './UserInfoList.less'
 
 const FormItem = Form.Item
@@ -11,49 +13,32 @@ const FormItem = Form.Item
 @observer
 class UserInfoForm extends React.Component {
 
-  componentDidMount () {
-    console.log(this.props)
-  }
-
-  handleSearchResults () {
-    const { userInfoListModel } = this.props
-    const { getFieldsValue } = this.props.form
-
-
-    userInfoListModel.setResults([5])
-  }
-
-  handleResetInput () {
-    const { resetFields } = this.props.form
-    resetFields()
-  }
-
   render () {
-    const { getFieldDecorator } = this.props.form
+    const { userInfoListModel, form: { getFieldDecorator, getFieldsValue } } = this.props
     return (
       <Form className="userinfo-form"
             layout="inline">
         <Row gutter={24}>
-          <Col span={6}>
-            <FormItem label="学员姓名">
-              {getFieldDecorator(`field-0`, {})(<Input placeholder="placeholder"/>)}
+          <Col span={8}>
+            <FormItem label="学员昵称">
+              {getFieldDecorator(`nickName`, {})(<Input placeholder="请输入"/>)}
             </FormItem>
           </Col>
-          <Col span={6}>
+          <Col span={8}>
             <FormItem label="圈外Id（RiseId）">
-              {getFieldDecorator(`field-1`, {})(<Input placeholder="placeholder"/>)}
+              {getFieldDecorator(`riseId`, {})(<Input placeholder="请输入"/>)}
             </FormItem>
           </Col>
-          <Col span={6}>
+          <Col span={8}>
             <FormItem>
               <Button type="primary"
                       htmlType="submit"
-                      onClick={() => this.handleSearchResults()}>
-                Search
+                      onClick={() => userInfoListModel.handleSearchResults(getFieldsValue())}>
+                查询
               </Button>
               <Button style={{ marginLeft: 8 }}
-                      onClick={() => this.handleResetInput()}>
-                Clear
+                      onClick={() => this.props.form.resetFields()}>
+                重置
               </Button>
             </FormItem>
           </Col>
@@ -70,21 +55,25 @@ const UserInfoFormWrapper = Form.create()(UserInfoForm)
 @observer
 export default class UserInfoList extends React.Component {
 
-  state = {
-    str: 'helloworld'
-  }
-
-  componentDidMount () {
-    console.log('list:', this.props)
-  }
-
   render () {
-    const { str } = this.state
+    const { userInfoListModel } = this.props
 
     return (
       <div className="userinfo-list-container">
         <UserInfoFormWrapper/>
-        <h1>{this.props.userInfoListModel.results[0]}</h1>
+        <Table className="userinfo-table"
+               columns={userInfoListModel.columnDefinition}
+               dataSource={userInfoListModel.columnData}/>
+
+        <Modal width={720}
+               title={userInfoListModel.modalTitle}
+               visible={userInfoListModel.modalVisible}
+               onOk={() => userInfoListModel.hideModal()}
+               onCancel={() => userInfoListModel.hideModal()}
+               footer={null}>
+          <Table columns={userInfoListModel.modalColumnDefinition}
+                 dataSource={userInfoListModel.modalColumnData}/>
+        </Modal>
       </div>
     )
   }

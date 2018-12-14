@@ -1,12 +1,14 @@
 import * as React from 'react'
-import { Layout, Menu, Icon, Breadcrumb } from 'antd'
-import { Route } from 'react-router-dom'
+import { Layout, Menu, Icon } from 'antd'
+import { Route, Link } from 'react-router-dom'
+import CustomizeHeader from '../CustomizeHeader/CustomizeHeader'
 import MobxDemo from '../../router/MobxDemo/MobxDemo'
-import SideMenu from '../SideMenu/SideMenu'
 import UserInfoList from '../../router/UserInfoList/UserInfoList'
 
 const { Header, Content, Footer, Sider } = Layout
 const SubMenu = Menu.SubMenu
+
+const URI_PREFIX = '/crm'
 
 export default class BasicLayout extends React.Component {
 
@@ -23,25 +25,35 @@ export default class BasicLayout extends React.Component {
     })
   }
 
-  componentDidMount () {
-    console.log(this.props)
-  }
-
   render () {
     return (
       <Layout style={{ minHeight: '100vh' }}>
-        <Sider collapsible
+        <Sider collapsible={true}
                collapsed={this.state.collapsed}
                onCollapse={() => this.onCollapse()}>
-          <SideMenu/>
+          <Menu theme="dark"
+                defaultSelectedKeys={['1']}
+                mode="inline">
+            <Menu.Item key="1">
+              <Icon type="pie-chart"/>
+              <span>Dashboard</span>
+              <Link to={URI_PREFIX}></Link>
+            </Menu.Item>
+            <SubMenu key="2"
+                     title={<span><Icon type="user"/><span>学员信息</span></span>}>
+              <Menu.Item key="3">
+                <Link to={`${URI_PREFIX}/list/userinfo-list`}>音频课学员</Link>
+              </Menu.Item>
+            </SubMenu>
+          </Menu>
         </Sider>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }}></Header>
+          <CustomizeHeader/>
           <Content style={{ margin: '0 16px' }}>
             <div style={{ marginTop: '16px', padding: 24, background: '#fff', minHeight: 360 }}>
-              <Route path="/demo"
+              <Route path={`${URI_PREFIX}/demo`}
                      component={MobxDemo}/>
-              <Route path="/list/userinfo-list"
+              <Route path={`${URI_PREFIX}/list/userinfo-list`}
                      component={UserInfoList}/>
             </div>
           </Content>

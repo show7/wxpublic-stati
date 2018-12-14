@@ -4,7 +4,7 @@ let app = express()
 app.use(require('./datas/userInfoList'))
 
 let ip = '0.0.0.0'
-let port = 5000
+let port = 3000
 
 app.get('/', (req, res) => {
   res.send('mock 启动成功')
