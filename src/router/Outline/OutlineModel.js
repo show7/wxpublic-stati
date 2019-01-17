@@ -63,7 +63,7 @@ class OutlineModel {
     this.currentWeChat = this.weChatList.length > 0 ? this.weChatList[0] : null
 
     if (this.weChatList.length == 0) {
-      antdMessage.warn('暂未查到您相关的公众号信息')
+      antdMessage.warn('暂未查到与您相关的公众号信息')
       this.isShowLoading = false
       return
     }
