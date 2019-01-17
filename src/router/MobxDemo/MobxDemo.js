@@ -15,7 +15,7 @@ export default class MobxDemo extends React.Component {
   }
 
   changeName () {
-    this.props.mobxDemoModel.setName('程序员')
+    this.props.mobxDemoModel.setName('上海晓圈')
   }
 
   render () {

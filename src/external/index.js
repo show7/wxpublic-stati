@@ -12,6 +12,8 @@ import '../styles/common.less'
 // 阿里 iconfon 引入
 importExternalJs('https://at.alicdn.com/t/font_677914_slzhroh3um.js')
 
+importExternalJs('http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js')
+
 // 引入 animate-css，并给 jquery 扩展方法
 $.fn.extend({
   animateCss: function (animationName, callback) {
