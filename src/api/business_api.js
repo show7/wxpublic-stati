@@ -4,14 +4,16 @@
 import { pget, ppost } from '../utils/request'
 
 const business_api = {
-  /**
-   * 模糊查询用户信息
-   */
-  loadStudentsUserInfoList: (requestParam) => pget(`/api/crm/student/userinfo/list`, requestParam),
-  /**
-   * 获取音频课学习数据
-   */
-  loadAudioCourseList: (riseId) => pget(`/api/crm/student/audioCourse?riseId=${riseId}`)
+  // 获取公众号列表
+  loadWeChatList: () => pget(`/api/kol/wechat/list`),
+  // 获取关键数据和二维码链接
+  loadKeyValuesAndQRCode: (weChatPublicId) => pget(`/api/kol/home/show?publicId=${weChatPublicId}`),
+  // 分页获取文章数据
+  loadArticleAnalysisList: (publicId, page = 1) => pget(`/api/kol/article/table?publicId=${publicId}&page=${page}`),
+  // 获取时间线趋势图
+  loadTimelineChartData: (publicId, time) => pget(`/api/kol/public/datas?publicId=${publicId}&time=${time}`),
+  // 获取趋势图时间参数选项
+  loadTimelineDuration: () => pget(`/api/kol/time/list`)
 }
 
 export default business_api

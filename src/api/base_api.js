@@ -9,9 +9,9 @@ const base_api = {
    */
   base_loadUserInfo: (riseId) => {
     if (riseId) {
-      return pget(`/api/crm/userinfo?riseId=${riseId}`)
+      return pget(`/api/kol/user/info?riseId=${riseId}`)
     } else {
-      return pget(`/api/crm/userinfo`)
+      return pget(`/api/kol/user/info`)
     }
   }
 }

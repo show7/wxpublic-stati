@@ -5,7 +5,7 @@ import BasicLayout from '../layout/BasicLayout/BasicLayout'
 const router = (
   <BrowserRouter>
     <div>
-      <Route path="/"
+      <Route path="/wx_public_backend"
              component={BasicLayout}>
       </Route>
     </div>

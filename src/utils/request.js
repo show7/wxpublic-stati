@@ -1,15 +1,25 @@
 import * as axios from 'axios'
 import { message as antdMessage } from 'antd'
+import { isMobilePlatForm, isMobileWidth } from './utils'
 
 // 根据当前所在平台，添加 header
-let platform = 'crm'
+let platform
+if (isMobilePlatForm()) {
+  platform = 'we_mobile'
+} else {
+  platform = 'wx_public_backend'
+}
 axios.defaults.headers.platform = platform
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 // 对于 700 返回，默认跳转登录页
 axios.interceptors.response.use(function (response) {
   if (response.status === 700) {
-    window.location.href = decodeURI(`${window.location.protocol}//${window.location.host}/login?callbackUrl=`) + encodeURIComponent(window.location.href)
+    if (isMobilePlatForm()) {
+      window.location.href = decodeURI(`${window.location.protocol}//${window.location.host}/wx/oauth/auth/10?callbackUrl=`) + encodeURIComponent(window.location.href)
+    } else {
+      window.location.href = decodeURI(`${window.location.protocol}//${window.location.host}/login?serviceId=12&callbackUrl=`) + encodeURIComponent(window.location.href)
+    }
   } else {
     return response
   }
@@ -35,6 +45,10 @@ export function pget (url, params = {}) {
       if (code > 220 || code < 200) {
         antdMessage.warn(message)
       }
+      if (code == 500) {
+        redirectInnerServerError()
+        return
+      }
       return response.data
     }).catch(error => {
       throw error
@@ -57,6 +71,10 @@ export function ppost (url, params = {}) {
       let message = response.data.msg
       if (code > 220 || code < 200) {
         antdMessage.warn(message)
+      }
+      if (code == 500) {
+        redirectInnerServerError()
+        return
       }
       return response.data
     }).catch(error => {
@@ -81,6 +99,10 @@ export function ppostMute (url, params = {}) {
       if (code > 220 || code < 200) {
         antdMessage.warn(message)
       }
+      if (code == 500) {
+        redirectInnerServerError()
+        return
+      }
       return response.data
     }).catch(error => {
       throw error
@@ -102,4 +124,8 @@ export function asyncAll (requests = []) {
     console.error(err.type)
     console.error(err.message)
   }
+}
+
+export function redirectInnerServerError () {
+  window.location.href = `${window.location.protocol}//${window.location.host}/wx_public_backend/500`
 }

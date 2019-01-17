@@ -4,8 +4,9 @@
 import { importExternalCss, importExternalJs } from '../utils/domUtil'
 
 import $ from 'jquery'
-import 'animate.css'
 import 'normalize.css'
+import 'animate.css'
+import 'ant-design-pro/dist/ant-design-pro.min.css'
 import '../styles/common.less'
 
 // 阿里 iconfon 引入

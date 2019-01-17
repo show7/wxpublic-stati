@@ -19,7 +19,7 @@ module.exports = merge(common, {
     openPage: '',
     proxy: {
       '/api/*': {
-        target: 'http://localhost:3000',
+        target: 'http://www.confucius.mobi',
         secure: false,
         bypass: function (req, res, proxyOptions) {
           if (req.headers.accept && req.headers.accept.indexOf('html') !== -1) {
@@ -33,6 +33,10 @@ module.exports = merge(common, {
     },
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      inject: true
+    }),
     new webpack.HotModuleReplacementPlugin(),
     // 当开启 HMR 的时候使用该插件会显示模块的相对路径，建议用于开发环境
     new webpack.NamedModulesPlugin(),

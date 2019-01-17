@@ -1,10 +1,42 @@
 .customize-header-component {
+  padding: 0 16px;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .collapse-icon {
+    font-size: 2.4rem;
+  }
+
   .loginuser-block {
     position: relative;
-    float: right;
-    margin-right: 50px;
+
     .nickname {
       margin-left: 15px;
+    }
+  }
+}
+
+.customize-header.popover-content {
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  .popover-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .popover-icon {
+      display: inline-block;
+    }
+    .popover-text {
+      display: inline-block;
+      margin-left: 5px;
+    }
+    &:hover {
+      color: #1890ff;
+      cursor: pointer;
     }
   }
 }

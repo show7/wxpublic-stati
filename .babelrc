@@ -1,6 +1,11 @@
 {
   "presets": [
-    "env",
+    [
+      "env",
+      {
+        "useBuiltIns": true
+      }
+    ],
     "react"
   ],
   "plugins": [
@@ -14,6 +19,15 @@
         "libraryName": "antd",
         "libraryDirectory": "es",
         "style": "css"
+      }
+    ],
+    [
+      "import",
+      {
+        "libraryName": "ant-design-pro",
+        "libraryDirectory": "lib",
+        "style": true,
+        "camel2DashComponentName": false
       }
     ]
   ]

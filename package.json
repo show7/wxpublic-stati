@@ -5,15 +5,17 @@
     "local": "webpack-dev-server --config ./config/webpack.local.js",
     "dev": "webpack-dev-server --config ./config/webpack.dev.js",
     "prod": "webpack --config ./config/webpack.prod.js",
-    "ftp": "gulp ftp"
+    "ftp": "npm run prod; gulp ftp"
   },
   "author": "三十文_felix",
   "license": "ISC",
   "dependencies": {
     "animate.css": "^3.7.0",
-    "antd": "^3.10.8",
+    "ant-design-pro": "^2.1.1",
+    "antd": "^3.12.1",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
+    "echarts": "^4.2.0-rc.2",
     "jquery": "^3.3.1",
     "lodash": "^4.17.11",
     "mobx": "^5.5.2",
@@ -50,5 +52,6 @@
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.1",
     "webpack-merge": "^4.1.2"
-  }
+  },
+  "browserslist": "> 0.25%, not dead"
 }
