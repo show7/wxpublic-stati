@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { observable, action } from 'mobx'
+import { message as antdMessage } from 'antd'
 import Api from '../../api/Api'
 
 class OutlineModel {
@@ -60,6 +61,13 @@ class OutlineModel {
     let weChatListRes = await Api.loadWeChatList()
     this.weChatList = weChatListRes.msg
     this.currentWeChat = this.weChatList.length > 0 ? this.weChatList[0] : null
+
+    if (this.weChatList.length == 0) {
+      antdMessage.warn('暂未查到您相关的公众号信息')
+      this.isShowLoading = false
+      return
+    }
+
     this._loadKeyValuesAndQRCode(this.currentWeChat.id)
     let timelineDurationRes = await Api.loadTimelineDuration()
     this.timelineDuration = timelineDurationRes.msg
@@ -89,20 +97,17 @@ class OutlineModel {
 
   @action.bound
   async changeTimeDuration (timeDuration) {
-    console.log('timedurtaion:', timeDuration)
     this.currentTimelineDuration = timeDuration
     this._loadTimelineChartData(this.currentWeChat.id, this.currentTimelineDuration)
   }
 
   @action.bound
   async changePagination (clickPage) {
-    console.log('click pagination:', clickPage)
     this._loadArticleAnalysisList(this.currentWeChat.id, clickPage)
   }
 
   async _loadKeyValuesAndQRCode (weChatId) {
     let keyValuesAndQRCodeRes = await Api.loadKeyValuesAndQRCode(weChatId)
-    console.log('keyValuesAndQRCodeRes:', keyValuesAndQRCodeRes)
     this.totalOpenRate = keyValuesAndQRCodeRes.msg.totalOpenRate
     this.totalSubscribe = keyValuesAndQRCodeRes.msg.totalSubscribe
     this.newOpenRate = keyValuesAndQRCodeRes.msg.newOpenRate

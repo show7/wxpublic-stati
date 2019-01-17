@@ -15,7 +15,6 @@ class BasicLayoutModel {
   @action.bound
   async loadUserInfo () {
     let userInfoRes = await Api.base_loadUserInfo()
-    console.log('userinfores:', userInfoRes)
     this.userInfo = userInfoRes.msg
   }
 

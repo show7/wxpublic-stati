@@ -17,10 +17,6 @@ export default class Outline extends React.Component {
   componentDidMount () {
     const { outlineModel } = this.props
     outlineModel.loadOutlineInitData()
-
-    console.log('\n\n')
-    console.log('outlineModel:', outlineModel)
-    console.log('\n\n')
   }
 
   render () {
