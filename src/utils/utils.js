@@ -22,3 +22,15 @@ export function isMobilePlatForm () {
     return true
   }
 }
+
+/**
+ * 查看当前是否是测试环境
+ * @returns {*}
+ */
+export function isDevelopment () {
+  if (window.ENV && window.ENV.isDevelopment) {
+    return window.ENV.isDevelopment
+  } else {
+    return false
+  }
+}

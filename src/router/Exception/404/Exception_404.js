@@ -7,7 +7,7 @@ export default class Exception_404 extends React.Component {
     return (
       <Exception type="404"
                  backText="返回首页"
-                 redirect="/wx_public_backend"/>
+                 redirect="/wx_public_backend/view"/>
     )
   }
 

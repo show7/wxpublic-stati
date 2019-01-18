@@ -48,7 +48,7 @@ export default class CustomizeSider extends React.Component {
           <Menu.Item key="1">
             <Icon type="pie-chart"/>
             <span>数据概览</span>
-            <Link to={`/wx_public_backend`}></Link>
+            <Link to={`/wx_public_backend/view`}></Link>
           </Menu.Item>
           {/*<SubMenu key="2"*/}
           {/*title={<span><Icon type="user"/><span>学员信息</span></span>}>*/}

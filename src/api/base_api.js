@@ -13,7 +13,13 @@ const base_api = {
     } else {
       return pget(`/api/kol/user/info`)
     }
-  }
+  },
+  /**
+   * 获取微信登录数据
+   * @param callbackUrl 跳转 url
+   * @param serviceId 所登录的公众号 id
+   */
+  base_loginOauth: (callbackUrl, serviceId) => pget(`/wx/oauth/pc/auth?callbackUrl=${encodeURIComponent(callbackUrl)}&serviceId=${serviceId}`)
 }
 
 export default base_api

@@ -7,7 +7,7 @@ export default class Exception_500 extends React.Component {
     return (
       <Exception type="500"
                  backText="返回首页"
-                 redirect="/wx_public_backend"/>
+                 redirect="/wx_public_backend/view"/>
     )
   }
 

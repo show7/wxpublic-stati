@@ -10,7 +10,7 @@ export default class QRCodeModal extends React.Component {
   render () {
     const { isVisible, qrCode, closeCallback } = this.props
     return (
-      <Modal className="qr-code-model-component"
+      <Modal className="qr-code-modal-component"
              title={isMobileWidth() ? '长按保存二维码' : '右键复制二维码'}
              visible={isVisible}
              footer={null}
