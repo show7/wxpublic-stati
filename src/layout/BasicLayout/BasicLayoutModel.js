@@ -23,6 +23,7 @@ class BasicLayoutModel {
    */
   @action.bound
   logout () {
+    document.cookie = ''
     window.location.href = `${window.location.protocol}//${window.location.host}/wx_public_backend/login`
   }
 

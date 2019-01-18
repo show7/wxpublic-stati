@@ -27,7 +27,7 @@ export default class Login extends React.Component {
         window.obj = new WxLogin(params)
         clearInterval(this.loginInterval)
       }
-    }, 500)
+    }, 1000)
   }
 
   closeQRCodeModal () {
