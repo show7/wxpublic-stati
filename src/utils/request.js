@@ -18,7 +18,7 @@ axios.interceptors.response.use(function (response) {
     if (isMobilePlatForm()) {
       window.location.href = decodeURI(`${window.location.protocol}//${window.location.host}/wx/oauth/auth/10?callbackUrl=`) + encodeURIComponent(window.location.href)
     } else {
-      window.location.href = decodeURI(`${window.location.protocol}//${window.location.host}/login?serviceId=12&callbackUrl=`) + encodeURIComponent(window.location.href)
+      window.location.href = decodeURI(`${window.location.protocol}//${window.location.host}/wx_public_backend/login?&callbackUrl=`) + encodeURIComponent(window.location.href)
     }
   } else {
     return response
