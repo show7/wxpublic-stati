@@ -22,10 +22,12 @@ export default class Login extends React.Component {
       if (!window.WxLogin) {
         return
       } else {
-        let params = Object.assign(oauthRes.msg, { id: 'login-qrcode' })
-        console.log(params)
-        window.obj = new WxLogin(params)
-        clearInterval(this.loginInterval)
+        if (document.querySelector('#login-qrcode')) {
+          let params = Object.assign(oauthRes.msg, { id: 'login-qrcode' })
+          console.log(params)
+          window.obj = new WxLogin(params)
+          clearInterval(this.loginInterval)
+        }
       }
     }, 1000)
   }
